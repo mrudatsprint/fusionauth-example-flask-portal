@@ -22,8 +22,6 @@ def homepage():
         client_response = fusionauth_api_client.retrieve_registration(user_id, application_id)
         if client_response.was_successful():
             registration_data = client_response.success_response['registration'].get('data')
-            # make sure minprice and maxprice are numbers not strings
-            registration_data['maxprice'], registration_data['minprice'] = int(registration_data['maxprice']), int(registration_data['minprice'])
             fields = get_fields(fusionauth_api_client)
         else:
             print(client_response.error_response)
